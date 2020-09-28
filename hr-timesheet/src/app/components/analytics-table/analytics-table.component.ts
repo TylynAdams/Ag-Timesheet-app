@@ -7,6 +7,9 @@ import { Employee } from 'src/app/interfaces/employee';
   styleUrls: ['./analytics-table.component.scss']
 })
 export class AnalyticsTableComponent implements OnInit {
+  @Input()
+  departmentId: string;
+
   weekdays: string[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   employees: Employee[] = [];
   employeeData: Employee[] = [
@@ -67,6 +70,7 @@ export class AnalyticsTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
+    this.employees = this.employeeData.filter(employee => employee.departmentId === this.departmentId);
+}
 
 }
