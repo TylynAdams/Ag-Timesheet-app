@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from 'src/app/interfaces/employee';
 
 @Component({
@@ -9,11 +9,6 @@ import { Employee } from 'src/app/interfaces/employee';
 export class AnalyticsTableComponent implements OnInit {
   @Input()
   departmentId: string;
-
-  getTotalHours(employee: Employee): number {
-    return employee.monday + employee.tuesday + employee.wednesday
-        + employee.thursday + employee.friday + employee.saturday + employee.sunday;
-}
 
   weekdays: string[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   employees: Employee[] = [];
@@ -76,6 +71,11 @@ export class AnalyticsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.employees = this.employeeData.filter(employee => employee.departmentId === this.departmentId);
+  }
+
+  getTotalHours(employee: Employee): number {
+    return employee.monday + employee.tuesday + employee.wednesday
+        + employee.thursday + employee.friday + employee.saturday + employee.sunday;
 }
 
 }
